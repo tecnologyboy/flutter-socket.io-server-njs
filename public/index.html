@@ -8,6 +8,8 @@
 <body>
     <h1>Acceso Denegado</h1>
 
+    <h3 id="msg1"></h3>
+
 
     <script src="socket.io/socket.io.js"></script>
 
@@ -26,8 +28,19 @@
 
         socket.on('mensaje', function(payload){
             console.log('mensaje', payload);
+           
         });
 
+        socket.on('new-messaje', function(payload){
+            console.log('mensaje en la web', payload);
+
+            document.getElementById('msg1').innerHTML = payload['mensaje'];
+        });
+
+        socket.on('active-bands', function(bands){
+            console.clear();
+            console.table(bands);
+        });
 
     </script>
 </body>
